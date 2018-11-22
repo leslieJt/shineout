@@ -1,36 +1,41 @@
 {
   "env": {
     "development": {
-      "presets": ["react-app"]
+      "plugins": [
+        "@babel/proposal-class-properties",
+        "@babel/proposal-object-rest-spread",
+        "@babel/syntax-dynamic-import"
+      ],
+      "presets": ["@babel/react"]
     },
     "production": {
-      "plugins": ["transform-react-remove-prop-types"],
-      "presets": ["react-app"]
+      "plugins": [
+        "@babel/proposal-class-properties",
+        "@babel/proposal-object-rest-spread",
+        "transform-react-remove-prop-types",
+        "@babel/transform-runtime"
+      ],
+      "presets": ["@babel/react"]
     },
     "publish": {
       "plugins": [
-        "transform-class-properties",
+        "@babel/proposal-class-properties",
         [
-          "transform-object-rest-spread",
+          "@babel/proposal-object-rest-spread",
           {
             "useBuiltIns": true
           }
-        ]
+        ],
+        "@babel/transform-runtime"
       ],
       "presets": [
-        ["env",
+        ["@babel/env",
           {
-            "targets": {
-              "browsers": [
-                "last 2 versions",
-                "ie >= 9"
-              ]
-            },
             "loose": true,
             "useBuiltIns": "entry"
           }
         ],
-        "react"
+        "@babel/react"
       ]
     }
   }
